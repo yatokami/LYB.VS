@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Sign in</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+    <link href="../css/signin.css" rel="stylesheet">
+</head>
+<body>
+    <input type="hidden" name="h" id="h" value="$!{Data.hidden}" />
+    <div class="container">
+        <form class="form-signin" method="post" action="RegiSter.ashx?Action=edit">
+            <h2 class="form-signin-heading">注册用户信息</h2>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="text" name="account" id="Account" class="form-control" placeholder="Email address" value="$!{Data.user}" onblur="Zz()" required />
+            <p id="unm" style="color:red"></p>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" value="$!{Data.pass}" onblur="Mmzz()" required>
+            <label for="inputPassword" class="sr-only">confirm password</label>
+            <input type="password" name="confirmpassword" id="confirmpassword" onblur="Mmzz()" class="form-control" placeholder="confirm password" required>
+            <p id="unm1" class="label label-success">密码格式为6-16位字母或者数字</p>
+            <input type="text" id="code" name="yzm" class="form-control" value placeholder="verification code" onblur="GetSession()" required />
+            <img src="../../Validate.ashx" id="vimg" alt="不区分大小写,点击切换" width="100px" onclick="changeCode()" />
+            <p id="unm2" class="label label-success"></p>
+            <div class="checkbox">
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" id="submit" onclick="SignIn()">Sign in</button>
+        </form>
+    </div> <!-- /container -->
+    <script src="../js/Ajax.js"></script>
+    <script>
+        function changeCode() {
+            var imgNode = document.getElementById("vimg");
+            imgNode.src = "../../Validate.ashx?t=" + (new Date()).valueOf();  // 这里加个时间的参数是为了防止浏览器缓存的问题
+        }
+        Go1();
+    </script>
+</body>
+</html>
